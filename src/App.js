@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { 
   HashRouter as Router, 
   Route } from 'react-router-dom'
+import './scss/index.scss'
 import Home from './views/home'
 import Login from './views/login'
 
