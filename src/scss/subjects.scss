@@ -29,7 +29,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid #ddd;
+      border-top: 1px solid #0b8235;
       background-color: #fafcfe;
       border-bottom-left-radius: 3px;
       border-bottom-right-radius: 3px;
@@ -37,6 +37,8 @@
       p{
         width: 33.333%;
         text-align: center;
+        margin: 0;
+        font-size: 0.8rem;
 
         &:nth-child(2){
           border-left: 1px solid #ddd;
