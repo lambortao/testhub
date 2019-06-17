@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Drawer, Input } from 'antd';
+import { Button, Drawer, Input, message } from 'antd';
 import __post from '../api'
 import '../scss/subjects.scss'
 const { TextArea } = Input;
@@ -24,6 +24,13 @@ class Subjects extends Component {
     });
   }
   postSubject () {
+    if (this.state.name === '') {
+      message.error('科目名称不能为空');
+      return;
+    } else if (this.state.commit === '') {
+      message.error('注释不能为空');
+      return;
+    }
     const subjectData = {
       name: this.state.name,
       commit: this.state.commit
