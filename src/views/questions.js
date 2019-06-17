@@ -3,13 +3,15 @@ import { Button } from 'antd';
 import '../scss/question.scss'
 
 class Questions extends Component {
+  addQuestion() {
+    window.location.href = '#/home/addquestion/1/1'
+  }
   render () {
     return (
       <div className='questions-list'>
-        <div className="single-choice">
+        <div className="questions-box single-choice">
           <header>
             <h2>单选题</h2>
-            <Button icon="plus">新增</Button>
           </header>
           <div className="questions-box">
             <div className="question">
@@ -42,10 +44,9 @@ class Questions extends Component {
             </div>
           </div>
         </div>
-        <div className="multiple-choice">
+        <div className="questions-box multiple-choice">
           <header>
             <h2>多选题</h2>
-            <Button icon="plus">新增</Button>
           </header>
           <div className="questions-box">
             <div className="question">
@@ -78,10 +79,9 @@ class Questions extends Component {
             </div>
           </div>
         </div>
-        <div className="judge">
-        <header>
+        <div className="questions-box judge">
+          <header>
             <h2>判断题</h2>
-            <Button icon="plus">新增</Button>
           </header>
           <div className="questions-box">
             <div className="question">
@@ -108,6 +108,14 @@ class Questions extends Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className="add-subject">
+          <Button 
+          type="primary" 
+          shape="circle" 
+          icon="plus" 
+          size='large' 
+          onClick={this.addQuestion.bind(this, {})} />
         </div>
       </div>
     )

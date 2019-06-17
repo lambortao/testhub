@@ -1,7 +1,7 @@
 .questions-list{
   padding: 10px;
 
-  > div{
+  > div.questions-box{
     max-width: 750px;
     margin: 0 auto;
     background-color: #fff;
@@ -85,6 +85,58 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+.addquestion-box{
+  padding: 10px;
+
+  .addquestion-list{
+    max-width: 750px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 10px;
+
+    .addquestion-single{
+      width: 100%;
+      header{
+        margin-bottom: 15px;
+
+        input{
+          margin-bottom: 10px;
+        }
+      }
+      div.answer-single{
+        margin-bottom: 10px;
+
+        &:last-child{
+          margin: 0;
+        }
+        display: flex;
+        justify-content: flex-start;
+
+        i{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 32px;
+          height: 32px;
+          margin-right: 10px;
+          border: 1px solid #d9d9d9;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+        input{
+          width: calc(100% - 42px);
+        }
+      }
+    }
+    .btn-box{
+      padding-top: 25px;
+      button{
+        margin-right: 10px;
       }
     }
   }
