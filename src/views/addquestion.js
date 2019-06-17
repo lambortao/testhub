@@ -12,7 +12,14 @@ class AddQuestion extends Component {
     }
   }
   componentWillMount() {
+    /**
+     * 参数为：
+     * 1 => 四个答案的选择题
+     * 2 => 判断题
+     * 其他 => 生成对应答案数量的选择题
+     */
     const questionId = parseInt(this.props.match.params.id);
+    // 生成对应的多少道题目
     const questionNumber = parseInt(this.props.match.params.number);
     this.createData(questionId, questionNumber);
   }
