@@ -4,6 +4,8 @@ import '../scss/question.scss'
 
 class Questions extends Component {
   addQuestion() {
+    // 这里的链接是有规律的，第一个参数为1是四个答案的选择题，为2是判断题，其他的数字的话会生成对应答案数的选择题
+    // 第二个参数是当前页面生成多少道题目
     window.location.href = '#/home/addquestion/1/1'
   }
   render () {

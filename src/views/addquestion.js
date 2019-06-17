@@ -15,9 +15,6 @@ class AddQuestion extends Component {
     const questionId = parseInt(this.props.match.params.id);
     const questionNumber = parseInt(this.props.match.params.number);
     this.createData(questionId, questionNumber);
-    // setTimeout(() => {
-    //   this.createData(questionId);
-    // }, 2000);
   }
   // 生成选项
   crateAnswer = (num) => {
@@ -44,7 +41,7 @@ class AddQuestion extends Component {
         break;
       default:
         // 选择题
-        answerData = this.crateAnswer(4);
+        answerData = this.crateAnswer(id);
         // 默认选择题
         break;
     }
