@@ -101,6 +101,15 @@
 
     .addquestion-single{
       width: 100%;
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px dotted #ff4d4f;
+
+      &:last-child{
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border: none;
+      }
       header{
         margin-bottom: 15px;
 
@@ -124,9 +133,19 @@
           width: 32px;
           height: 32px;
           margin-right: 10px;
-          border: 1px solid #d9d9d9;
           border-radius: 50%;
           cursor: pointer;
+
+          &.anticon-minus{
+            background-color: #ff4d4f;
+          }
+          &.anticon-check{
+            background-color: #0b8235;
+          }
+
+          svg path{
+            fill: #fff;
+          }
         }
         input{
           width: calc(100% - 42px);
