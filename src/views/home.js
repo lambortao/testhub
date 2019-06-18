@@ -16,7 +16,7 @@ class Home extends Component {
           <div className="main-box">
             <Route path="/home/subjects" component={Subjects}></Route>
             <Route path="/home/questions/:id" component={Questions}></Route>
-            <Route path="/home/addquestion/:id/:number" component={AddQuestion}></Route>
+            <Route path="/home/addquestion/:question/:type/:number" component={AddQuestion}></Route>
           </div>
         </div>
       </Router>

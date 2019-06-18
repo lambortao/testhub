@@ -1,10 +1,57 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
+import __post from '../api'
 import '../scss/question.scss'
 
+function QuestionDom(props) {
+  console.log(props);
+  let QuestionDom = props.data.map((element, index) => 
+    <div className="question" key={index}>
+      <header>
+        <h4 className="topic">{`${index+1}、${element.question_text}`}</h4>
+        <small className="commit">{element.commit}</small>
+      </header>
+      <div className="answer-list">
+        <ul>
+          {
+            JSON.parse(element.answer).map((answerElement, answerIndex) => 
+              <li 
+              key={answerIndex} 
+              data-type={answerIndex + 1}
+              className={answerElement.selected ? 'correct': ''}
+              >{answerElement.content}</li>
+            )
+          }
+        </ul>
+      </div>
+    </div>
+  )
+  return QuestionDom;
+}
+
 class Questions extends Component {
+  state = {
+    question: {
+      single: [],
+      judge: [],
+      multiple: []
+    }
+  }
+  componentWillMount() {
+    this.getQuestionList();
+  }
+  getQuestionList = () => {
+    __post('question/getQuestionList', {
+      id: parseInt(this.props.match.params.id)
+    }).then(res => {
+      this.setState({
+        question: res.data
+      });
+    })
+  }
   addQuestion() {
-    window.location.href = '#/home/addquestion/1/1'
+    const questionId = parseInt(this.props.match.params.id);
+    window.location.href = `#/home/addquestion/${questionId}/1/1`
   }
   render () {
     return (
@@ -14,34 +61,8 @@ class Questions extends Component {
             <h2>单选题</h2>
           </header>
           <div className="questions-box">
-            <div className="question">
-              <header>
-                <h4 className="topic">1、这是一道测试题目</h4>
-                <small className="commit">这是测试题目的注释</small>
-              </header>
-              <div className="answer-list">
-                <ul>
-                  <li className='correct' data-type='1'>这是第一个答案</li>
-                  <li data-type='2'>这是第二个答案</li>
-                  <li data-type='3'>这是第三个答案</li>
-                  <li data-type='4'>这是第四个答案</li>
-                </ul>
-              </div>
-            </div>
-            <div className="question">
-              <header>
-                <h4 className="topic">2、这是一道测试题目</h4>
-                <small className="commit">这是测试题目的注释</small>
-              </header>
-              <div className="answer-list">
-                <ul>
-                  <li className='correct' data-type='1'>这是第一个答案</li>
-                  <li data-type='2'>这是第二个答案</li>
-                  <li data-type='3'>这是第三个答案</li>
-                  <li data-type='4'>这是第四个答案</li>
-                </ul>
-              </div>
-            </div>
+            <QuestionDom
+            data={this.state.question.single} />
           </div>
         </div>
         <div className="questions-box multiple-choice">
@@ -49,34 +70,8 @@ class Questions extends Component {
             <h2>多选题</h2>
           </header>
           <div className="questions-box">
-            <div className="question">
-              <header>
-                <h4 className="topic">1、这是一道测试题目</h4>
-                <small className="commit">这是测试题目的注释</small>
-              </header>
-              <div className="answer-list">
-                <ul>
-                  <li className='correct' data-type='1'>这是第一个答案</li>
-                  <li className='correct' data-type='2'>这是第二个答案</li>
-                  <li className='correct' data-type='3'>这是第三个答案</li>
-                  <li data-type='4'>这是第四个答案</li>
-                </ul>
-              </div>
-            </div>
-            <div className="question">
-              <header>
-                <h4 className="topic">2、这是一道测试题目</h4>
-                <small className="commit">这是测试题目的注释</small>
-              </header>
-              <div className="answer-list">
-                <ul>
-                  <li className='correct' data-type='1'>这是第一个答案</li>
-                  <li className='correct' data-type='2'>这是第二个答案</li>
-                  <li data-type='3'>这是第三个答案</li>
-                  <li data-type='4'>这是第四个答案</li>
-                </ul>
-              </div>
-            </div>
+            <QuestionDom
+            data={this.state.question.multiple} />
           </div>
         </div>
         <div className="questions-box judge">
@@ -84,29 +79,8 @@ class Questions extends Component {
             <h2>判断题</h2>
           </header>
           <div className="questions-box">
-            <div className="question">
-              <header>
-                <h4 className="topic">1、这是一道测试题目</h4>
-              </header>
-              <div className="answer-list">
-                <ul>
-                  <li data-type='1'>对</li>
-                  <li className='correct' data-type='2'>错</li>
-                </ul>
-              </div>
-            </div>
-            <div className="question">
-              <header>
-                <h4 className="topic">2、这是一道测试题目</h4>
-                <small className="commit">这是测试题目的注释</small>
-              </header>
-              <div className="answer-list">
-                <ul>
-                  <li className='correct' data-type='1'>对</li>
-                  <li data-type='2'>错</li>
-                </ul>
-              </div>
-            </div>
+            <QuestionDom
+            data={this.state.question.judge} />
           </div>
         </div>
         <div className="add-subject">

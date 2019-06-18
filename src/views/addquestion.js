@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Input, Icon } from 'antd';
+import { Button, Input, Icon, message } from 'antd';
+import __post from '../api'
 import '../scss/question.scss'
 const { TextArea } = Input;
 
@@ -61,7 +62,7 @@ class AddQuestion extends Component {
      * 2 => 判断题
      * 其他 => 生成对应答案数量的选择题
      */
-    const questionId = parseInt(this.props.match.params.id);
+    const questionId = parseInt(this.props.match.params.type);
     // 生成对应的多少道题目
     const questionNumber = parseInt(this.props.match.params.number);
     this.createQuestion(questionId, questionNumber);
@@ -105,6 +106,20 @@ class AddQuestion extends Component {
     }
     this.setState({ question });
   }
+
+  sendQuestion = () => {
+    console.log(JSON.stringify(this.state.question));
+    const questionData = {
+      data: JSON.stringify(this.state.question),
+      subject: parseInt(this.props.match.params.question)
+    }
+    __post('question/addQuestion', questionData).then(res => {
+      if (res.msg === 'true') {
+        message.success('保存成功');
+        window.location.href = `#/home/questions/${parseInt(this.props.match.params.question)}`
+      }
+    })
+  }
   render () {
     return (
       <div className='addquestion-box'>
@@ -115,7 +130,9 @@ class AddQuestion extends Component {
             changeEvent={this.getData} />
           </div>
           <div className="btn-box">
-            <Button type="primary">保存</Button>
+            <Button 
+            type="primary"
+            onClick={() => this.sendQuestion()}>保存</Button>
             <Button type="primary">保存并添加选择模板</Button>
             <Button type="primary">保存并添加判断模板</Button>
           </div>
