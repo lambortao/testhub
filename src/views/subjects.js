@@ -3,15 +3,44 @@ import { Button, Drawer, Input, message } from 'antd';
 import __post from '../api'
 import '../scss/subjects.scss'
 const { TextArea } = Input;
+
+function SubjectModule(props) {
+  let subjectDom = props.data.map((element, index) => 
+    <section key={index} className='subject' onClick={props.goQuestion.bind(this, element.id)}>
+      <header>
+        <h3>{element.name}</h3>
+      </header>
+      <footer>
+        <p>单选 - {element.single}</p>
+        <p>多选 - {element.multiple}</p>
+        <p>判断 - {element.judge}</p>
+      </footer>
+    </section>
+  )
+  return subjectDom;
+}
+
 class Subjects extends Component {
   state = { 
     visible: false,
     name: '',
-    commit: ''
+    commit: '',
+    subjectsData: []
   }
 
+  componentWillMount() {
+    this.getQuestionList();
+  }
+  getQuestionList = () => {
+    __post('subject/getSubjectList', {}).then(res => {
+      console.log(res);
+      this.setState({
+        subjectsData: res
+      });
+    })
+  }
   goQuestion(num) {
-    this.props.history.push(`/home/questions/${num}`);
+    window.location.href = `#/home/questions/${num}`;
   }
   inputName = (e) => {
     this.setState({
@@ -36,22 +65,23 @@ class Subjects extends Component {
       commit: this.state.commit
     }
     __post('subject/addSubject', subjectData).then(res => {
-      console.log(res);
+      if (res.msg === 'true') {
+        this.setState({
+          visible: false
+        }, () => {
+          message.success('新增科目成功');
+          this.getQuestionList();
+        });
+      }
     })
   }
   render () {
     return (
       <div className='subjects-list'>
-        <section className='subject' onClick={this.goQuestion.bind(this, 1)}>
-          <header>
-            <h3>测试标题</h3>
-          </header>
-          <footer>
-            <p>单选 - 20</p>
-            <p>多选 - 200</p>
-            <p>判断 - 278</p>
-          </footer>
-        </section>
+        <SubjectModule
+        data={this.state.subjectsData}
+        goQuestion={this.goQuestion}
+        />
         <div className="add-subject">
           <Button 
           type="primary" 
