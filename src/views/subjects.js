@@ -69,8 +69,7 @@ class Subjects extends Component {
         this.setState({
           visible: false
         }, () => {
-          message.success('新增科目成功');
-          this.getQuestionList();
+          message.success('新增科目成功').then(() => this.getQuestionList());
         });
       }
     })

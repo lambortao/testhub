@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, Icon, message } from 'antd';
+import { Button, Input, Icon, message, Affix } from 'antd';
 import __post from '../api'
 import '../scss/question.scss'
 const { TextArea } = Input;
@@ -115,8 +115,8 @@ class AddQuestion extends Component {
     }
     __post('question/addQuestion', questionData).then(res => {
       if (res.msg === 'true') {
-        message.success('保存成功');
-        window.location.href = `#/home/questions/${parseInt(this.props.match.params.question)}`
+        message.success('保存成功')
+          .then(() => window.location.href = `#/home/questions/${parseInt(this.props.match.params.question)}`);
       }
     })
   }
