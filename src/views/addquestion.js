@@ -113,6 +113,7 @@ class AddQuestion extends Component {
       data: JSON.stringify(this.state.question),
       subject: parseInt(this.props.match.params.question)
     }
+    // 一段注释，测试提交
     __post('question/addQuestion', questionData).then(res => {
       if (res.msg === 'true') {
         message.success('保存成功')
