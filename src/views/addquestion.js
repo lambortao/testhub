@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, Icon, message, Affix } from 'antd';
+import { Button, Input, Icon, message } from 'antd';
 import __post from '../api'
 import '../scss/question.scss'
 const { TextArea } = Input;
