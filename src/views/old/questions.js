@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
-import __post from '../api'
-import '../scss/question.scss'
+import __post from '../../api'
+import '../../scss/question.scss'
 
 function QuestionDom(props) {
   console.log(props);

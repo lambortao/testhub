@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Drawer, Input, message } from 'antd';
-import __post from '../api'
-import '../scss/subjects.scss'
+import __post from '../../api'
+import '../../scss/subjects.scss'
 const { TextArea } = Input;
 
 function SubjectModule(props) {

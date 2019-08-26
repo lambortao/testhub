@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input, Icon, message } from 'antd';
-import __post from '../api'
-import '../scss/question.scss'
+import __post from '../../api'
+import '../../scss/question.scss'
 const { TextArea } = Input;
 
 // 根据数据生成dom结构

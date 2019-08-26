@@ -3,8 +3,8 @@ import {
   HashRouter as Router, 
   Route } from 'react-router-dom'
 import './scss/index.scss'
-import Home from './views/home'
-import Login from './views/login'
+import Home from './views/old/home'
+import Login from './views/old/login'
 
 class App extends Component {
   render() {
