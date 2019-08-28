@@ -3,4 +3,4 @@ import ReactDom from 'react-dom';
 import App from './App';
 import Admin from './Admin';
 
-ReactDom.render(<App />, document.getElementById('root'));
+ReactDom.render(<Admin />, document.getElementById('root'));
