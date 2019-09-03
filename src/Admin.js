@@ -1,28 +1,17 @@
-import React, { Component, useState, useEffect } from 'react';
+import React from 'react';
+import { 
+  HashRouter as Router, 
+  Route } from 'react-router-dom'
+import Login from './views/Login'
+import Home from './views/Home';
 
-class Admin extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    );
-  }
-}
-
-function Example() {
-  const [ count, setCount ] = useState(0);
-
-  useEffect(() => {
-    document.title = `这是第${count}次修改标题`
-  })
-
+function Admin () {
   return (
-    <div>
-      <p>{ count }</p>
-      <button onClick={ () => setCount(count + 1) }>加一</button>
-    </div>
+    <Router>
+      <Route exact path='/' component={ Login }></Route>
+      <Route path='/home' component={ Home }></Route>
+    </Router>  
   )
 }
 
-export default Example;
+export default Admin;
